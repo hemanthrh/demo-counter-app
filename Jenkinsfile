@@ -1,6 +1,10 @@
 pipeline{
     
-    agent any 
+   agent { label 'ci-cd-slave' }
+    tools {
+        jdk 'java17'
+        maven 'Maven3'
+    }
     
     stages {
         
