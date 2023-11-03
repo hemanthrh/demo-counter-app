@@ -48,19 +48,15 @@ pipeline{
                 }
             }
         }
-stage('Static code analysis'){
-            
-            steps{
-                
-                script{
-                    
-                                         
-                        sh 'mvn clean package sonar:sonar'
-                    
-                   }
-                    
-                }
-            }
+  stage("SonarQube Analysis"){
+           steps {
+	           script {
+		        withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
+                        sh "mvn sonar:sonar"
+		        }
+	           }	
+           }
+       }
 
         }
         
